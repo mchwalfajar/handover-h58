@@ -1,10 +1,11 @@
 const dateNowElement = document.getElementById('dateNow');
 
 const now = new Date();
-const formattedDate = now.toLocaleDateString('en-GB', {
-    day: '2-digit',
-    month: '2-digit',
-    year: 'numeric',
-});
+const monthNames = [
+    'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+    'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+];
+const formattedDate = `${now.getDate()} ${monthNames[now.getMonth()]} ${now.getFullYear()}`;
 
 dateNowElement.innerText = `Tanggal: ${formattedDate}`;
+    
