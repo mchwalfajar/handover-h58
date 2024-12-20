@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/img/psn-logo.jpeg" type="image/x-icon" />
+    <title>Handover · Handover H58</title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+    <div class="header-container">
+        <h1>Handover H58</h1>
+        <div class="note">
+            <b>Note:</b> <br>
+            <i>UT Online > 70% Normal dan UT Offline <30% = Normal</i><br>
+            <i>Total High Beam SER > 15% = Massive</i>
+        </div>
+    </div>
+    <div class="header">
+        <span>Shift:</span>
+        <select id="shiftSelect">
+            <option value="shift1">Shift 1</option>
+            <option value="shift2">Shift 2</option>
+            <option value="shift3">Shift 3</option>
+        </select>
+        <div class="date-now" id="dateNow"></div>
+    </div>
+
+    <div class="tables-grid">
+        <% if (tableData['ip_transit'] && tableData['ip_transit'].length > 0) { %>
+            <div class="table-container full-width">
+                <h2>IP Transit</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Moratel Incoming</th>
+                            <th>Moratel Outgoing</th>
+                            <th>Telkom Incoming</th>
+                            <th>Telkom Outgoing</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% tableData['ip_transit'].forEach(data => { %>
+                            <tr>
+                                <td><%= parseFloat(data.moratel_incoming).toFixed(2) %> Gbps</td>
+                                <td><%= parseFloat(data.moratel_outgoing).toFixed(2) %> Mbps</td>
+                                <td><%= parseFloat(data.telkom_incoming).toFixed(2) %> Gbps</td>
+                                <td><%= parseFloat(data.telkom_outgoing).toFixed(2) %> Mbps</td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        <% } %>
+
+        <div class="table-containerBatam">
+            <table>
+                <thead>
+                    <h2>Gateway Batam</h2> 
+                    <tr>
+                        <th>Served Beam</th>
+                        <th>Detail Beam</th>
+                    </tr>
+                    <tr>
+                        <td>15 Beam</td>
+                        <td>1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 16, 20, 21</td>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+
+        <div class="table-containerPontianak">
+            <table>
+                <thead>
+                    <h2>Gateway Pontianak</h2> 
+                    <tr>
+                        <th>Served Beam</th>
+                        <th>Detail Beam</th>
+                    </tr>
+                    <tr>
+                        <td>16 Beam</td>
+                        <td>14, 15, 45, 53, 19, 24, 50, 18, 22, 48, 23, 47, 49, 55, 17, 25</td>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+
+        <div class="table-containerTarakan">
+            <table>
+                <thead>
+                    <h2>Gateway Tarakan</h2> 
+                    <tr>
+                        <th>Served Beam</th>
+                        <th>Detail Beam</th>
+                    </tr>
+                    <tr>
+                        <td>21 Beam</td>
+                        <td>32, 36, 41, 42, 66, 35, 52, 60L, 60U, 31, 34, 40, 43, 56, 30, 33, 38, 61, 37, 39, 59</td>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+
+        <div class="table-containerManado">
+            <table>
+                <thead>
+                    <h2>Gateway Manado</h2> 
+                    <tr>
+                        <th>Served Beam</th>
+                        <th>Detail Beam</th>
+                    </tr>
+                    <tr>
+                        <td>22 Beam</td>
+                        <td>26, 44, 57, 72, 62, 63, 64, 70, 28L, 27, 46, 65, 28U, 51, 54, 58, 105, 67, 68, 69L, 71, 69U</td>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <% Object.keys(tableData).forEach(tableName => { %>
+            <% if (tableName !== 'ip_transit') { %> 
+                <div class="table-container" style="background-color: 
+                <% if (tableName === 'batam_trafik' || tableName === 'batam_ut' || tableName === 'batam_ser') { %>
+                    #f0f8ff; /* Light blue for Batam */
+                <% } else if (tableName === 'pontianak_trafik' || tableName === 'pontianak_ut' || tableName === 'pontianak_ser') { %>
+                    #f5f5dc; /* Beige for Pontianak */
+                <% } else if (tableName === 'tarakan_trafik' || tableName === 'tarakan_ut' || tableName === 'tarakan_ser') { %>
+                    #e6e6fa; /* Lavender for Tarakan */
+                <% } else if (tableName === 'manado_trafik' || tableName === 'manado_ut' || tableName === 'manado_ser') { %>
+                    #ffe4e1; /* Misty rose for Manado */
+                <% } else { %>
+                    #ffffff; /* Default white */
+                <% } %>
+            ">
+                    <h2><%= serDisplayNames[tableName] || tableName %></h2>
+                    <% if (tableData[tableName].length > 0) { %>
+                        <table>
+                            <thead>
+                                <% if (tableName.includes('_ut')) { %>
+                                    <tr>
+                                        <th>Online UT</th>
+                                        <th>Offline UT</th>
+                                        <th>Total UT</th>
+                                        <th>Online Percentage</th>
+                                        <th>Note</th>
+                                    </tr>
+                                <% } else if (tableName.includes('_ser')) { %>
+                                    <tr>
+                                        <th>Beam Name</th>
+                                        <th>Terminal Active</th>
+                                        <th>State Code</th>
+                                        <th>Percentage</th>
+                                    </tr>
+                                <% } else if (tableName.includes('_trafik')) { %>
+                                    <tr>
+                                        <th>Outgoing</th>
+                                        <th>Incoming</th>
+                                    </tr>
+                                <% } %>
+                            </thead>
+                            <tbody>
+                                <% tableData[tableName].forEach(data => { %>
+                                    <tr>
+                                        <% if (tableName.includes('_ut')) { %>
+                                            <td><%= data.online_ut %></td>
+                                            <td><%= data.offline_ut %></td>
+                                            <td><%= data.total_ut %></td>
+                                            <td><%= data.percentage_ut %>%</td>
+                                            <td>
+                                                <%= data.percentage_ut >= 70 ? "Normal" : "Tidak Normal" %>
+                                            </td>
+                                        <% } else if (tableName.includes('_ser')) { %>
+                                            <td><%= data.beam_name %></td>
+                                            <td><%= data.terminal %></td>
+                                            <td><%= data.state %></td>
+                                            <td><%= parseFloat(data.percentage).toFixed(1) %>%</td>
+                                        <% } else if (tableName.includes('_trafik')) { %>
+                                            <td><%= parseFloat(data.outgoing).toFixed(2) %> Gbps</td>
+                                            <td><%= parseFloat(data.incoming).toFixed(2) %> Mbps</td>
+                                        <% } %>
+                                    </tr>
+                                <% }) %>
+                            </tbody>
+                        </table>
+                    <% } else { %>
+                        <p>No Beam with SER percentage > 15%</p>
+                    <% } %>
+                </div>
+            <% } %>
+        <% }) %>
+    </div>
+
+        
+
+    <script src="/js/date.js"></script>
+</body>
+</html>
