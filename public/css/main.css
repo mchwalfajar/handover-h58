@@ -1,0 +1,87 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+h1 {
+    text-align: left;
+}
+.tables-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.table-containerBatam {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    background-color: #f0f8ff;
+
+}
+.table-containerTarakan {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    background-color: #e6e6fa;
+
+}
+.table-containerPontianak {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    background-color:  #f5f5dc;
+
+}
+.table-containerManado {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    background-color: #ffe4e1;
+
+}
+.table-container.full-width {
+    grid-column: span 4;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 8px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+th {
+    background-color: #fdfdfd;
+}
+
+
+
+.header {
+    display: flex;
+    align-items: center;
+}
+.header select, .header span {
+    margin-right: 10px;
+}
+
+.row-even {
+    background-color: #ff3535; /* Light grey */
+}
+.row-odd {
+    background-color: #ffffff; /* White */
+}
+
