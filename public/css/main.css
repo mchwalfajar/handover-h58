@@ -11,29 +11,35 @@ h1 {
     gap: 30px;
     margin-top: 30px;
 }
+.table-container {
+    padding: 20px;
+    border-radius: 5px;
+    margin: 15px 0;
+}
 
-.table-containerBatam {
+
+.table-container.batam {
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 10px;
-    background-color: #f0f8ff;
+    background-color: #c9e4fb;
 
 }
-.table-containerTarakan {
+.table-container.tarakan {
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 10px;
     background-color: #e6e6fa;
 
 }
-.table-containerPontianak {
+.table-container.pontianak {
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 10px;
     background-color:  #f5f5dc;
 
 }
-.table-containerManado {
+.table-container.manado {
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 10px;

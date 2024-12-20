@@ -26,7 +26,9 @@
         <div class="date-now" id="dateNow"></div>
     </div>
 
+
     <div class="tables-grid">
+
         <% if (tableData['ip_transit'] && tableData['ip_transit'].length > 0) { %>
             <div class="table-container full-width">
                 <h2>IP Transit</h2>
@@ -53,7 +55,7 @@
             </div>
         <% } %>
 
-        <div class="table-containerBatam">
+        <div class="table-container batam">
             <table>
                 <thead>
                     <h2>Gateway Batam</h2> 
@@ -69,7 +71,7 @@
             </table>
         </div>
 
-        <div class="table-containerPontianak">
+        <div class="table-container pontianak">
             <table>
                 <thead>
                     <h2>Gateway Pontianak</h2> 
@@ -85,7 +87,7 @@
             </table>
         </div>
 
-        <div class="table-containerTarakan">
+        <div class="table-container tarakan">
             <table>
                 <thead>
                     <h2>Gateway Tarakan</h2> 
@@ -101,7 +103,7 @@
             </table>
         </div>
 
-        <div class="table-containerManado">
+        <div class="table-container manado">
             <table>
                 <thead>
                     <h2>Gateway Manado</h2> 
@@ -118,19 +120,19 @@
         </div>
         <% Object.keys(tableData).forEach(tableName => { %>
             <% if (tableName !== 'ip_transit') { %> 
-                <div class="table-container" style="background-color: 
+                <div class="table-container 
                 <% if (tableName === 'batam_trafik' || tableName === 'batam_ut' || tableName === 'batam_ser') { %>
-                    #f0f8ff; /* Light blue for Batam */
+                    batam
                 <% } else if (tableName === 'pontianak_trafik' || tableName === 'pontianak_ut' || tableName === 'pontianak_ser') { %>
-                    #f5f5dc; /* Beige for Pontianak */
+                    pontianak
                 <% } else if (tableName === 'tarakan_trafik' || tableName === 'tarakan_ut' || tableName === 'tarakan_ser') { %>
-                    #e6e6fa; /* Lavender for Tarakan */
+                    tarakan
                 <% } else if (tableName === 'manado_trafik' || tableName === 'manado_ut' || tableName === 'manado_ser') { %>
-                    #ffe4e1; /* Misty rose for Manado */
+                    manado
                 <% } else { %>
-                    #ffffff; /* Default white */
+                    default
                 <% } %>
-            ">
+                ">
                     <h2><%= serDisplayNames[tableName] || tableName %></h2>
                     <% if (tableData[tableName].length > 0) { %>
                         <table>
