@@ -7,10 +7,6 @@
     <title>Handover · Handover H58</title>
     <link rel="stylesheet" href="/css/main.css">
 
-    <!-- <style>
-        
-    </style> -->
-
 </head>
 <body>
     <div class="header-container">
@@ -185,15 +181,15 @@
                                             <tr>
                                                 <td><b>Outgoing</b></td>
                                                 <td><%= parseFloat(data.outgoing).toFixed(2) %> Gbps</td>
-                                                <td><%= parseFloat(data.estOutgoing).toFixed(2) %> Gbps</td>
-                                                <td><%= parseFloat(data.targetOutgoing).toFixed(2) %> Gbps</td>
+                                                <td><%= parseFloat(data.outEstCap).toFixed(2) %> Gbps</td>
+                                                <td><%= parseFloat(data.outTarCap).toFixed(2) %> Gbps</td>
                                             </tr>
 
                                             <tr>
                                                 <td><b>Incoming</b></td>
                                                 <td><%= parseFloat(data.incoming).toFixed(2) %> Mbps</td>
-                                                <td><%= parseFloat(data.estIncoming).toFixed(2) %> Gbps</td>
-                                                <td><%= parseFloat(data.targetIncoming).toFixed(2) %> Gbps</td>
+                                                <td><%= parseFloat(data.inEstCap).toFixed(2) %> Mbps</td>
+                                                <td><%= parseFloat(data.inTarCap).toFixed(2) %> Gbps</td>
                                             </tr>
                                         <% } %>
                                     </tr>
