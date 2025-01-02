@@ -118,9 +118,9 @@ table {
 }
 
 th, td {
-    padding: 8px;
+    padding: 7px;
     text-align: center;
-    border: 1px solid #ddd;
+    border: 1px solid #c4b1b1;
 }
 
 .header {

@@ -8,4 +8,3 @@ const monthNames = [
 const formattedDate = `${now.getDate()} ${monthNames[now.getMonth()]} ${now.getFullYear()}`;
 
 dateNowElement.innerText = `Tanggal: ${formattedDate}`;
-    

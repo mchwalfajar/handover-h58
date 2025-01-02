@@ -40,7 +40,7 @@ app.get('/', async (req, res) => {
             'batam_ser', 'pontianak_ser', 'tarakan_ser', 'manado_ser',
         ];
 
-        let tableData = {};
+    let tableData = {};
 
         for (const table of tables) {
             const [latestTimestampRow] = await connection.execute(`
@@ -63,7 +63,7 @@ app.get('/', async (req, res) => {
                 const [rows] = await connection.execute(query, params);
                 tableData[table] = rows;
             }
-        }
+        }    
 
         res.render('home', { tableData, serDisplayNames });
     } catch (error) {
@@ -76,7 +76,7 @@ app.get('/', async (req, res) => {
     }
 });
 
-const PORT = 3004;
+const PORT = 3005;
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });

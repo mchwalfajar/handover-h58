@@ -43,10 +43,30 @@
                     <tbody>
                         <% tableData['ip_transit'].forEach(data => { %>
                             <tr>
-                                <td><%= parseFloat(data.moratel_incoming).toFixed(2) %> Gbps</td>
-                                <td><%= parseFloat(data.moratel_outgoing).toFixed(2) %> Mbps</td>
-                                <td><%= parseFloat(data.telkom_incoming).toFixed(2) %> Gbps</td>
-                                <td><%= parseFloat(data.telkom_outgoing).toFixed(2) %> Mbps</td>
+                                <td>
+                                    <%= data.moratel_incoming >= 1000
+                                        ? (data.moratel_incoming/ 1000).toFixed(2) + ' Gbps' 
+                                        : parseFloat(data.moratel_incoming).toFixed(2) + ' Mbps' 
+                                    %>
+                                </td>
+                                <td>
+                                    <%= data.moratel_outgoing >= 1000
+                                        ? (data.moratel_outgoing/ 1000).toFixed(2) + ' Gbps' 
+                                        : parseFloat(data.moratel_outgoing).toFixed(2) + ' Mbps' 
+                                    %>
+                                </td>
+                                <td>
+                                    <%= data.telkom_incoming >= 1000
+                                        ? (data.telkom_incoming / 1000).toFixed(2) + ' Gbps' 
+                                        : parseFloat(data.telkom_incoming).toFixed(2) + ' Mbps' 
+                                    %>
+                                </td>
+                                <td>
+                                    <%= data.telkom_outgoing >= 1000
+                                        ? (data.telkom_outgoing / 1000).toFixed(2) + ' Gbps' 
+                                        : parseFloat(data.telkom_outgoing).toFixed(2) + ' Mbps' 
+                                    %>
+                                </td>
                             </tr>
                         <% }) %>
                     </tbody>
@@ -180,15 +200,40 @@
                                         <% } else if (tableName.includes('_trafik')) { %>
                                             <tr>
                                                 <td><b>Outgoing</b></td>
-                                                <td><%= parseFloat(data.outgoing).toFixed(2) %> Gbps</td>
-                                                <td><%= parseFloat(data.outEstCap).toFixed(2) %> Gbps</td>
-                                                <td><%= parseFloat(data.outTarCap).toFixed(2) %> Gbps</td>
+                                                <td>
+                                                    <%= data.outgoing >= 1000
+                                                        ? (data.outgoing / 1000).toFixed(2) + ' Gbps' 
+                                                        : parseFloat(data.outgoing).toFixed(2) + ' Mbps' 
+                                                    %>
+                                                </td>
+                                                <td>
+                                                    <%= data.outEstCap >= 1000
+                                                        ? (data.outEstCap / 1000).toFixed(2) + ' Gbps' 
+                                                        : parseFloat(data.outEstCap).toFixed(2) + ' Mbps' 
+                                                    %>
+                                                </td>
+                                                <td>
+                                                    <%= data.outTarCap >= 1000
+                                                        ? (data.outTarCap / 1000).toFixed(2) + ' Gbps' 
+                                                        : parseFloat(data.outTarCap).toFixed(2) + ' Mbps' 
+                                                    %>
+                                                </td>
                                             </tr>
 
                                             <tr>
                                                 <td><b>Incoming</b></td>
-                                                <td><%= parseFloat(data.incoming).toFixed(2) %> Mbps</td>
-                                                <td><%= parseFloat(data.inEstCap).toFixed(2) %> Mbps</td>
+                                                <td>
+                                                    <%= data.incoming >= 1000
+                                                        ? (data.incoming / 1000).toFixed(2) + ' Gbps' 
+                                                        : parseFloat(data.incoming).toFixed(2) + ' Mbps' 
+                                                    %>
+                                                </td>
+                                                <td>
+                                                    <%= data.inEstCap >= 1000
+                                                        ? (data.inEstCap / 1000).toFixed(2) + ' Gbps' 
+                                                        : parseFloat(data.inEstCap).toFixed(2) + ' Mbps' 
+                                                    %>
+                                                </td>
                                                 <td><%= parseFloat(data.inTarCap).toFixed(2) %> Gbps</td>
                                             </tr>
                                         <% } %>
