@@ -14,7 +14,7 @@ html, body {
 }
 
 body {
-    margin: 20px auto;
+    margin: 10px auto;
     max-width: 1920px; 
 }
 
@@ -25,15 +25,39 @@ h1 {
 .tables-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr); 
-    gap: 20px;
+    gap: 15px;
     margin-top: 30px;
 }
 
 .table-container {
     border: 1px solid #ddd;
     border-radius: 8px;
-    padding: 10px;
+    padding: 15px;
     background-color: #f9f9f9;
+}
+
+.table-container.full-width.ip-transit {
+    grid-column: span 3; 
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    background-color:  #f0eae2;
+    font-size: 17px;
+}
+
+.table-container.capacity {
+    grid-column: span 1; 
+    background-color:  #caf7ff;
+    font-size: 17px;
+}
+
+.table-container.full-width {
+    grid-column: span 4; 
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    background-color:  #f0eae2;
+    font-size: 17px;
 }
 
 .table-container.batam {
@@ -50,28 +74,28 @@ h1 {
     background-color: #c9e4fb;
 }
 
-.table-container.tarakan {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 10px;
-    background-color: #e6e6fa;
-}
-
-.gwTarakan {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 10px;
-    background-color: #e6e6fa;
-}
-
 .table-container.pontianak {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    background-color: #e6e6fa;
+}
+
+.gwPontianak {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    background-color: #e6e6fa;
+}
+
+.table-container.tarakan {
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 10px;
     background-color:  #f5f5dc;
 }
 
-.gwPontianak {
+.gwTarakan {
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 10px;
@@ -93,13 +117,6 @@ h1 {
     background-color:  #ffe4e1;
 }
 
-.table-container.full-width {
-    grid-column: span 4; 
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 10px;
-    background-color:  #f0ede2;
-}
 
 .header-container {
     display: flex;

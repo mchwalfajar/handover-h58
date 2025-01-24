@@ -28,22 +28,26 @@
     </div>
 
     <div class="tables-grid">
-        <% if (tableData['ip_transit'] && tableData['ip_transit'].length > 0) { %>
-            <div class="table-container full-width">
+        <% if ((tableData['ip_transit'] && tableData['ip_transit'].length > 0) ) { %>   
+            <div class="table-container full-width ip-transit">
                 <h2>IP Transit</h2>
                 <table>
                     <thead>
                         <tr>
-                            <th>Moratel Incoming</th>
-                            <th>Moratel Outgoing</th>
-                            <th>Telkom Incoming</th>
-                            <th>Telkom Outgoing</th>
+                            <th colspan="2">Moratel </th>
+                            <th colspan="2">Telkom</th>
                         </tr>
                     </thead>
                     <tbody>
+                        <th>Incoming</th>
+                        <th>Outgoing</th>
+                        <th>Incoming</th>
+                        <th>Outgoing</th>
+
                         <% tableData['ip_transit'].forEach(data => { %>
                             <tr>
-                                <td>
+                                <!-- Moratel -->
+                                <td> 
                                     <%= data.moratel_incoming >= 1000
                                         ? (data.moratel_incoming/ 1000).toFixed(2) + ' Gbps' 
                                         : parseFloat(data.moratel_incoming).toFixed(2) + ' Mbps' 
@@ -55,6 +59,8 @@
                                         : parseFloat(data.moratel_outgoing).toFixed(2) + ' Mbps' 
                                     %>
                                 </td>
+
+                                <!-- Telkom -->
                                 <td>
                                     <%= data.telkom_incoming >= 1000
                                         ? (data.telkom_incoming / 1000).toFixed(2) + ' Gbps' 
@@ -66,7 +72,7 @@
                                         ? (data.telkom_outgoing / 1000).toFixed(2) + ' Gbps' 
                                         : parseFloat(data.telkom_outgoing).toFixed(2) + ' Mbps' 
                                     %>
-                                </td>
+                                </td>      
                             </tr>
                         <% }) %>
                     </tbody>
@@ -74,6 +80,75 @@
             </div>
         <% } %>
 
+
+        <!-- start all Capacity -->
+        <% if (tableData['all_capacity'].length > 0) { %>
+            <div class="table-container capacity">
+                <h2>All Capacity</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Traffic</th>
+                            <th>Inroute</th>
+                            <th>Outroute</th>   
+                            <th>Total</th>  
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% tableData['all_capacity'].forEach(data => { %>
+                            <tr>
+                                <td><b>Estimate</b></td>
+                                <td>
+                                    <%= data.or_capacity >= 1000_000_000
+                                        ? (data.or_capacity / 1000_000_000).toFixed(2) + ' Gbps' 
+                                        : parseFloat(data.or_capacity).toFixed(2) + ' Mbps' 
+                                    %>
+                                </td>
+                                <td>
+                                    <%= data.ir_capacity >= 1000_000_000
+                                        ? (data.ir_capacity / 1000_000_000).toFixed(2) + ' Gbps' 
+                                        : parseFloat(data.ir_capacity).toFixed(2) + ' Mbps' 
+                                    %>
+                                </td>
+                                <td>
+                                    <%= data.total >= 1000_000_000
+                                        ? (data.total / 1000_000_000).toFixed(2) + ' Gbps' 
+                                        : parseFloat(data.total).toFixed(2) + ' Mbps' 
+                                    %>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td><b>Actual</b></td>
+                                <td>
+                                    <%= data.or_capacity_act >= 1000_000_000
+                                        ? (data.or_capacity_act / 1000_000_000).toFixed(2) + ' Gbps' 
+                                        : parseFloat(data.or_capacity_act).toFixed(2) + ' Mbps' 
+                                    %>
+                                </td>
+                                <td>
+                                    <%= data.ir_capacity_act >= 1000_000_000
+                                        ? (data.ir_capacity_act / 1000_000_000).toFixed(2) + ' Gbps' 
+                                        : parseFloat(data.ir_capacity_act).toFixed(2) + ' Mbps' 
+                                    %>
+                                </td>
+                                <td>
+                                    <%= data.total_act >= 1000_000_000
+                                        ? (data.total_act / 1000_000_000).toFixed(2) + ' Gbps' 
+                                        : parseFloat(data.total_act).toFixed(2) + ' Mbps' 
+                                    %>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        <% } else { %>
+            <p>No capacity data available.</p>
+        <% } %>
+        <!-- end all Capacity -->
+
+        <!-- start served Gateway -->
         <div class="gwBatam">
             <table>
                 <thead>
@@ -137,9 +212,10 @@
                 </thead>
             </table>
         </div>
+        <!-- end serverd Gateway -->
 
         <% Object.keys(tableData).forEach(tableName => { %>
-            <% if (tableName !== 'ip_transit') { %> 
+            <% if (tableName !== 'ip_transit' && tableName !== 'all_capacity') { %> 
                 <div class="table-container 
                 <% if (tableName === 'batam_trafik' || tableName === 'batam_ut' || tableName === 'batam_ser') { %>
                     batam
@@ -174,8 +250,7 @@
                                     </tr>
                                 <% } else if (tableName.includes('_trafik')) { %>
                                     <tr>
-                                        <th rowspan="2"></th>
-                                        <th>Mon Trafik</th>
+                                        <th colspan="2">Mon Trafik</th>
                                         <th>Est Capacity</th>
                                         <th>Target Capacity</th>
                                     </tr>
@@ -247,7 +322,10 @@
                 </div>
             <% } %>
         <% }) %>
-    </div>
+
+
+        </div>
     <script src="/js/date.js"></script>
 </body>
 </html>
+

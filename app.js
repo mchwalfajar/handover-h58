@@ -14,6 +14,7 @@ const dbConfig = {
 };
 
 const serDisplayNames = {
+    all_capacity: 'All Capacity',
     batam_ser: 'Total High SER Batam',
     tarakan_ser: 'Total High SER Tarakan',
     pontianak_ser: 'Total High SER Pontianak',
@@ -37,7 +38,7 @@ app.get('/', async (req, res) => {
         const tables = [
             'ip_transit','batam_trafik', 'pontianak_trafik', 'tarakan_trafik', 'manado_trafik',
             'batam_ut', 'pontianak_ut', 'tarakan_ut', 'manado_ut',
-            'batam_ser', 'pontianak_ser', 'tarakan_ser', 'manado_ser',
+            'batam_ser', 'pontianak_ser', 'tarakan_ser', 'manado_ser', 'all_capacity'
         ];
 
     let tableData = {};
@@ -76,7 +77,7 @@ app.get('/', async (req, res) => {
     }
 });
 
-const PORT = 3005;
+const PORT = 3004;
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
