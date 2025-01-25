@@ -89,8 +89,8 @@
                     <thead>
                         <tr>
                             <th>Traffic</th>
-                            <th>Inroute</th>
-                            <th>Outroute</th>   
+                            <th>Outroute</th>
+                            <th>Inroute</th>   
                             <th>Total</th>  
                         </tr>
                     </thead>
@@ -101,19 +101,19 @@
                                 <td>
                                     <%= data.or_capacity >= 1000_000_000
                                         ? (data.or_capacity / 1000_000_000).toFixed(2) + ' Gbps' 
-                                        : parseFloat(data.or_capacity).toFixed(2) + ' Mbps' 
+                                        : parseFloat(data.or_capacity / 1_000_000).toFixed(2) + ' Mbps' 
                                     %>
                                 </td>
                                 <td>
                                     <%= data.ir_capacity >= 1000_000_000
                                         ? (data.ir_capacity / 1000_000_000).toFixed(2) + ' Gbps' 
-                                        : parseFloat(data.ir_capacity).toFixed(2) + ' Mbps' 
+                                        : parseFloat(data.ir_capacity / 1_000_000).toFixed(2) + ' Mbps' 
                                     %>
                                 </td>
                                 <td>
                                     <%= data.total >= 1000_000_000
                                         ? (data.total / 1000_000_000).toFixed(2) + ' Gbps' 
-                                        : parseFloat(data.total).toFixed(2) + ' Mbps' 
+                                        : parseFloat(data.total / 1_000_000).toFixed(2) + ' Mbps' 
                                     %>
                                 </td>
                             </tr>
@@ -123,19 +123,19 @@
                                 <td>
                                     <%= data.or_capacity_act >= 1000_000_000
                                         ? (data.or_capacity_act / 1000_000_000).toFixed(2) + ' Gbps' 
-                                        : parseFloat(data.or_capacity_act).toFixed(2) + ' Mbps' 
+                                        : parseFloat(data.or_capacity_act / 1_000_000).toFixed(2) + ' Mbps' 
                                     %>
                                 </td>
                                 <td>
                                     <%= data.ir_capacity_act >= 1000_000_000
                                         ? (data.ir_capacity_act / 1000_000_000).toFixed(2) + ' Gbps' 
-                                        : parseFloat(data.ir_capacity_act).toFixed(2) + ' Mbps' 
+                                        : parseFloat(data.ir_capacity_act / 1_000_000).toFixed(2) + ' Mbps' 
                                     %>
                                 </td>
                                 <td>
                                     <%= data.total_act >= 1000_000_000
                                         ? (data.total_act / 1000_000_000).toFixed(2) + ' Gbps' 
-                                        : parseFloat(data.total_act).toFixed(2) + ' Mbps' 
+                                        : parseFloat(data.total_act / 1_000_000).toFixed(2) + ' Mbps' 
                                     %>
                                 </td>
                             </tr>
